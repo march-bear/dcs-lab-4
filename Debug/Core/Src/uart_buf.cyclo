@@ -1,0 +1,3 @@
+../Core/Src/uart_buf.c:4:6:uart_buf_push	2
+../Core/Src/uart_buf.c:15:6:uart_buf_pop	2
+../Core/Src/uart_buf.c:28:6:uart_buf_reset	1

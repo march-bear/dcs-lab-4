@@ -1,0 +1,4 @@
+../Core/Src/uart_driver.c:6:19:receive_char_into_buffer	16	static
+../Core/Src/uart_driver.c:10:19:uart6_try_push_received_char	24	static
+../Core/Src/uart_driver.c:21:19:transmit_char_from_buffer	16	static
+../Core/Src/uart_driver.c:25:19:uart6_try_transmit_pushed_char	24	static

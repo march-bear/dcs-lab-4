@@ -1,0 +1,7 @@
+../Core/Src/i2c_driver.c:16:6:keyboard_reset	2
+../Core/Src/i2c_driver.c:24:14:get_state	1
+../Core/Src/i2c_driver.c:28:6:keyboard_init	2
+../Core/Src/i2c_driver.c:41:13:update_curr_state	3
+../Core/Src/i2c_driver.c:84:13:is_all_unpressed	3
+../Core/Src/i2c_driver.c:94:13:is_one_pressed	4
+../Core/Src/i2c_driver.c:109:5:update_keyboard_state	9
