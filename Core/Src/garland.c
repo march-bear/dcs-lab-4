@@ -63,7 +63,7 @@ void start_editing() {
 void finish_editing() {
 	uint32_t pmask = lock();
 	reset_state = true;
-	mode = FORTH;
+	mode = FIFTH;
 	sprintf(info_buf, "Finish editing. User mode\r\n");
 	unlock(pmask);
 }
@@ -223,6 +223,26 @@ static void third_mode() {
 	 htim4.Instance->CCR3 = (value2 > 250) ? 500 : 0;
 }
 
+static void forth_mode() {
+	if (reset_state) {
+		sign1 = 1;
+		value1 = 0;
+		htim4.Instance->CCR2 = 0;
+		htim4.Instance->CCR3 = 0;
+		htim4.Instance->CCR4 = 0;
+		reset_state = false;
+	}
+
+	value1 = value1 + speed;
+	if (value1 > 3 * MAX_LIGHT) {
+		value1 = 0;
+	}
+
+	 htim4.Instance->CCR2 = ((value1 >= 0 && value1 < 500) ? 500 : 0);
+	 htim4.Instance->CCR3 = ((value1 >= 500 && value1 < 1000) ? 500 : 0);
+	 htim4.Instance->CCR4 = ((value1 >= 1000 && value1 < 1500) ? 500 : 0);
+}
+
 static void user_mode() {
 	if (reset_state) {
 		accurate_value1 = user_mode_green_init_light;
@@ -310,6 +330,9 @@ void next_mode() {
 		mode = FORTH;
 		break;
 	case FORTH:
+		mode = FIFTH;
+		break;
+	case FIFTH:
 		mode = FIRST;
 		break;
 	default:
@@ -320,6 +343,7 @@ void next_mode() {
 			(mode == FIRST) ? "FIRST"
 			: (mode == SECOND) ? "SECOND"
 					: (mode == THIRD) ? "THIRD"
+							: (mode == FORTH) ? "FORTH"
 							: "USER");
 
 	unlock(pmask);
@@ -330,7 +354,7 @@ void prev_mode() {
 	reset_state = true;
 	switch (mode) {
 	case FIRST:
-		mode = FORTH;
+		mode = FIFTH;
 		break;
 	case SECOND:
 		mode = FIRST;
@@ -341,15 +365,19 @@ void prev_mode() {
 	case FORTH:
 		mode = THIRD;
 		break;
+	case FIFTH:
+		mode = FORTH;
+		break;
 	default:
 		break;
 	}
 
 	sprintf(info_buf, "mode: %s\r\n",
-				(mode == FIRST) ? "FIRST"
-				: (mode == SECOND) ? "SECOND"
-						: (mode == THIRD) ? "THIRD"
-								: "USER");
+			(mode == FIRST) ? "FIRST"
+			: (mode == SECOND) ? "SECOND"
+					: (mode == THIRD) ? "THIRD"
+							: (mode == FORTH) ? "FORTH"
+							: "USER");
 
 	unlock(pmask);
 }
@@ -366,6 +394,9 @@ void update_state() {
 		third_mode();
 		break;
 	case FORTH:
+		forth_mode();
+		break;
+	case FIFTH:
 	case EDITING:
 		user_mode();
 		break;

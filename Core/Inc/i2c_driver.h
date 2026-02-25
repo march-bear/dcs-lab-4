@@ -24,4 +24,3 @@ void keyboard_reset();
 void keyboard_init();
 int update_keyboard_state();
 
-const bool * get_state();

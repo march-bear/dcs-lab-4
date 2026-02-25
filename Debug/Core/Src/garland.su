@@ -12,9 +12,10 @@
 ../Core/Src/garland.c:140:13:first_mode	16	static
 ../Core/Src/garland.c:162:13:second_mode	4	static
 ../Core/Src/garland.c:193:13:third_mode	4	static
-../Core/Src/garland.c:226:13:user_mode	16	static
-../Core/Src/garland.c:264:6:speed_up	24	static
-../Core/Src/garland.c:282:6:speed_down	24	static
-../Core/Src/garland.c:299:6:next_mode	16	static
-../Core/Src/garland.c:328:6:prev_mode	16	static
-../Core/Src/garland.c:357:6:update_state	8	static
+../Core/Src/garland.c:226:13:forth_mode	4	static
+../Core/Src/garland.c:246:13:user_mode	16	static
+../Core/Src/garland.c:284:6:speed_up	24	static
+../Core/Src/garland.c:302:6:speed_down	24	static
+../Core/Src/garland.c:319:6:next_mode	16	static
+../Core/Src/garland.c:352:6:prev_mode	16	static
+../Core/Src/garland.c:385:6:update_state	8	static

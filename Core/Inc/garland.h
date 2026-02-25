@@ -9,6 +9,7 @@ typedef enum {
 	SECOND,
 	THIRD,
 	FORTH,
+	FIFTH,
 	EDITING
 } GARLAND_MODE;
 
